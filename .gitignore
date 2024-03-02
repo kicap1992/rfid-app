@@ -11,10 +11,10 @@
 migrate_working_dir/
 .dart_tool
 .idea
-.linux
-.macos
-.web
-.windows
+/linux/
+/macos/
+/web/
+/windows/
 
 # IntelliJ related
 *.iml
