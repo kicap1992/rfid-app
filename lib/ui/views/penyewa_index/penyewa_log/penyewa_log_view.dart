@@ -43,54 +43,58 @@ class PenyewaLogView extends StatelessWidget {
                     ),
                     child: model.logHistorySewaanList == null
                         ? const Center(child: CircularProgressIndicator())
-                        : ListView.builder(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 15, vertical: 10),
-                            itemCount: model.logHistorySewaanList!.length,
-                            itemBuilder: (context, index) {
-                              // model.log
-                              //     .i(model.logHistorySewaanList![index].date);
-                              return GestureDetector(
-                                onTap: () {
-                                  // model.log.i('clicked on index $index');
-                                  model.checkKet(
-                                    model.logHistorySewaanList![index],
+                        : model.logHistorySewaanList!.isEmpty
+                            ? const Center(child: Text('Belum ada log'))
+                            : ListView.builder(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 15, vertical: 10),
+                                itemCount: model.logHistorySewaanList!.length,
+                                itemBuilder: (context, index) {
+                                  // model.log
+                                  //     .i(model.logHistorySewaanList![index].date);
+                                  return GestureDetector(
+                                    onTap: () {
+                                      // model.log.i('clicked on index $index');
+                                      model.checkKet(
+                                        model.logHistorySewaanList![index],
+                                      );
+                                    },
+                                    child: Card(
+                                      child: ListTile(
+                                        title: Text(
+                                          model.logHistorySewaanList![index]
+                                              .jenis!,
+                                          style: boldTextStyle.copyWith(
+                                              fontSize: 15),
+                                        ),
+                                        subtitle: const Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            // Text(
+                                            //   'Tempat : ${model.logHistorySewaanList![index].}',
+                                            //   style: regularTextStyle,
+                                            // ),
+                                            // Text(
+                                            //   model.logHistorySewaanList![index]
+                                            //       .jenis!,
+                                            //   style: italicTextStyle,
+                                            // ),
+                                          ],
+                                        ),
+                                        // dummy date and time
+                                        trailing: Text(
+                                          model.otherFunction.formatDateString(
+                                              model.logHistorySewaanList![index]
+                                                  .date!),
+                                          style: regularTextStyle,
+                                        ),
+                                      ),
+                                    ),
                                   );
                                 },
-                                child: Card(
-                                  child: ListTile(
-                                    title: Text(
-                                      model.logHistorySewaanList![index].jenis!,
-                                      style:
-                                          boldTextStyle.copyWith(fontSize: 15),
-                                    ),
-                                    subtitle: const Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        // Text(
-                                        //   'Tempat : ${model.logHistorySewaanList![index].}',
-                                        //   style: regularTextStyle,
-                                        // ),
-                                        // Text(
-                                        //   model.logHistorySewaanList![index]
-                                        //       .jenis!,
-                                        //   style: italicTextStyle,
-                                        // ),
-                                      ],
-                                    ),
-                                    // dummy date and time
-                                    trailing: Text(
-                                      model.otherFunction.formatDateString(model
-                                          .logHistorySewaanList![index].date!),
-                                      style: regularTextStyle,
-                                    ),
-                                  ),
-                                ),
-                              );
-                            },
-                          ),
+                              ),
                   ),
                 )
               ],

@@ -59,6 +59,7 @@ class RetributorIndexViewModel extends IndexTrackingViewModel {
     }
 
     socketIoClient.on('scan', (data) async {
+      log.i('data : $data');
       var res = await dialogService.showCustomDialog(
         variant: DialogType.scanRfidDialogView,
         title: 'Pembayaran Retribusi',

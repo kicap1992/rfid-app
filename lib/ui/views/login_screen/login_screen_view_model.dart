@@ -29,13 +29,14 @@ class LoginScreenViewModel extends CustomBaseViewModel {
       navigationService.navigateTo(Routes.retributorIndexView);
       return;
     }
+    easyLoading.customLoading('Login...');
 
     try {
       var formData =
           FormData.fromMap({'username': username, 'password': password});
       var response = await httpService.postWithFormData('login', formData);
       MyResponseModel myResponseModel = MyResponseModel.fromJson(response.data);
-      // log.i(myResponseModel.status);
+      // log.i(myResponseModel);
       if (myResponseModel.status == true) {
         // mySharedPrefs.clear();
         // log.i('pindah');
@@ -56,6 +57,8 @@ class LoginScreenViewModel extends CustomBaseViewModel {
     } catch (e) {
       log.e(e);
       // snackbarService.showSnackbar(message: 'Error: $e');
+    } finally {
+      easyLoading.dismiss();
     }
   }
 }

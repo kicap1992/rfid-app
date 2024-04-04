@@ -16,7 +16,7 @@ class ScanRfidDialogViewModel extends CustomBaseViewModel {
 
   Future<void> init(data) async {
     log.d('init');
-
+    log.d(data);
     getData(data);
   }
 

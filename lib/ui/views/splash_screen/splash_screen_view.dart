@@ -37,7 +37,7 @@ class SplashScreenView extends StatelessWidget {
                       ),
                       const SizedBox(height: 10),
                       Text(
-                        "Sistem Retribusi Pasar Enrekang",
+                        "Sistem Retribusi Pasar Lakessi",
                         style: boldTextStyle.copyWith(
                           fontSize: 20,
                         ),
@@ -47,7 +47,7 @@ class SplashScreenView extends StatelessWidget {
                 ),
               ),
               const Text(
-                "Jln Panti Asuhan No. 3 Ujung Lare, Kec. Soreang, Kota Parepare, Sulawesi Selatan 91133",
+                "Pasar Lakessi, Kota Parepare, Sulawesi Selatan 91133",
                 textAlign: TextAlign.center,
                 style: regularTextStyle,
               ),

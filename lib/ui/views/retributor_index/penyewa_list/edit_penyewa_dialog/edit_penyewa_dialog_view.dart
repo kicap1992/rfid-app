@@ -37,64 +37,66 @@ class EditPenyewaDialogView extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
               color: backgroundColor,
             ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                const Text("NIK"),
-                MyTextFormField(
-                  controller: model.nikController,
-                  hintText: 'Masukkan NIK Penyewa',
-                  keyboardType: TextInputType.number,
-                  maxLength: 16,
-                  validator: Validatorless.multiple(
-                    [
-                      Validatorless.required('NIK harus diisi'),
-                      Validatorless.min(16, 'NIK harus 16 digit'),
-                      Validatorless.max(16, 'NIK harus 16 digit'),
-                    ],
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  const Text("NIK"),
+                  MyTextFormField(
+                    controller: model.nikController,
+                    hintText: 'Masukkan NIK Penyewa',
+                    keyboardType: TextInputType.number,
+                    maxLength: 16,
+                    validator: Validatorless.multiple(
+                      [
+                        Validatorless.required('NIK harus diisi'),
+                        Validatorless.min(16, 'NIK harus 16 digit'),
+                        Validatorless.max(16, 'NIK harus 16 digit'),
+                      ],
+                    ),
                   ),
-                ),
-                const SizedBox(height: 20),
-                const Text("Nama"),
-                MyTextFormField(
-                  controller: model.nameController,
-                  hintText: 'Masukkan Nama Penyewa',
-                  validator: Validatorless.required('Nama harus diisi'),
-                ),
-                const SizedBox(height: 20),
-                MyButton(
-                  text: 'Update Data',
-                  onPressed: () {
-                    if (request.data!.nik == model.nikController.text &&
-                        request.data!.nama == model.nameController.text) {
-                      model.snackbarService.showSnackbar(
-                        message: 'Tidak ada perubahan',
-                      );
-                      return;
-                    }
-
-                    model.dialogService
-                        .showDialog(
-                      title: 'Konfirmasi',
-                      description: 'Apakah anda yakin ingin mengupdate data?',
-                      cancelTitle: 'Batal',
-                      buttonTitle: 'Update',
-                      // confirmationTitle: 'Update',
-                    )
-                        .then((value) async {
-                      if (value!.confirmed) {
-                        bool res = await model.updateData(request.data!.nik);
-                        // model.log.i("ini res: $res");
-                        if (res) {
-                          completer(DialogResponse(confirmed: true));
-                        }
+                  const SizedBox(height: 20),
+                  const Text("Nama"),
+                  MyTextFormField(
+                    controller: model.nameController,
+                    hintText: 'Masukkan Nama Penyewa',
+                    validator: Validatorless.required('Nama harus diisi'),
+                  ),
+                  const SizedBox(height: 20),
+                  MyButton(
+                    text: 'Update Data',
+                    onPressed: () {
+                      if (request.data!.nik == model.nikController.text &&
+                          request.data!.nama == model.nameController.text) {
+                        model.snackbarService.showSnackbar(
+                          message: 'Tidak ada perubahan',
+                        );
+                        return;
                       }
-                    });
-                  },
-                ),
-              ],
+
+                      model.dialogService
+                          .showDialog(
+                        title: 'Konfirmasi',
+                        description: 'Apakah anda yakin ingin mengupdate data?',
+                        cancelTitle: 'Batal',
+                        buttonTitle: 'Update',
+                        // confirmationTitle: 'Update',
+                      )
+                          .then((value) async {
+                        if (value!.confirmed) {
+                          bool res = await model.updateData(request.data!.nik);
+                          // model.log.i("ini res: $res");
+                          if (res) {
+                            completer(DialogResponse(confirmed: true));
+                          }
+                        }
+                      });
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         );

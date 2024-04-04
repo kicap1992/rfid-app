@@ -14,6 +14,7 @@ class LogHistorySewaanViewModel extends CustomBaseViewModel {
   }
 
   getData() async {
+    logHistorySewaanList = [];
     try {
       var response = await httpService.get('scan/log');
       MyResponseModel myResponseModel = MyResponseModel.fromJson(response.data);

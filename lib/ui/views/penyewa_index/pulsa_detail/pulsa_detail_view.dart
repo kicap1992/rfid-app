@@ -33,36 +33,38 @@ class PulsaDetailView extends StatelessWidget {
                   ),
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    _RowChildren(
-                      title: 'NIK',
-                      value: model.detailPenyewaModel!.nik ?? '...',
-                    ),
-                    const SizedBox(height: 5),
-                    _RowChildren(
-                      title: 'Nama',
-                      value: model.detailPenyewaModel!.nama ?? '...',
-                    ),
-                    const SizedBox(height: 5),
-                    _RowChildren(
-                      title: 'Pulsa',
-                      value:
-                          'Rp. ${model.otherFunction.commaFormat(model.detailPenyewaModel!.saldo ?? 0)}',
-                    ),
-                    const SizedBox(height: 5),
-                    _RowChildren(
-                      title: 'Card ID',
-                      value: model.detailPenyewaModel!.rfid ?? '...',
-                    ),
-                  ],
-                ),
+                child: model.detailPenyewaModel == null
+                    ? const Center(child: CircularProgressIndicator())
+                    : Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          _RowChildren(
+                            title: 'NIK',
+                            value: model.detailPenyewaModel!.nik ?? '...',
+                          ),
+                          const SizedBox(height: 5),
+                          _RowChildren(
+                            title: 'Nama',
+                            value: model.detailPenyewaModel!.nama ?? '...',
+                          ),
+                          const SizedBox(height: 5),
+                          _RowChildren(
+                            title: 'Pulsa',
+                            value:
+                                'Rp. ${model.otherFunction.commaFormat(model.detailPenyewaModel!.saldo ?? 0)}',
+                          ),
+                          const SizedBox(height: 5),
+                          _RowChildren(
+                            title: 'Card ID',
+                            value: model.detailPenyewaModel!.rfid ?? '...',
+                          ),
+                        ],
+                      ),
               ),
               const SizedBox(height: 20),
-              MyButton(text: 'Ganti Password')
+              const MyButton(text: 'Ganti Password')
             ],
           ),
         );
